@@ -83,7 +83,7 @@ namespace Nancy.Hosting.Aspnet
                                    HostName = context.Request.Url.Host,
                                    Port = context.Request.Url.Port,
                                    BasePath = basePath,
-                                   Path = path,
+                                   Path = Nancy.Helpers.HttpUtility.UrlDecode(path),
                                    Query = context.Request.Url.Query,
                                    Fragment = context.Request.Url.Fragment,
                                };

@@ -13,6 +13,7 @@
     using IO;
     using Nancy.Bootstrapper;
     using Nancy.Extensions;
+    using Nancy.Helpers;
 
     /// <summary>
     /// Host for running Nancy ontop of WCF.
@@ -104,8 +105,8 @@
                 BasePath = webRequest.UriTemplateMatch.BaseUri.AbsolutePath,
                 Scheme = webRequest.UriTemplateMatch.RequestUri.Scheme,
                 HostName = webRequest.UriTemplateMatch.BaseUri.Host,
-                Port = webRequest.UriTemplateMatch.RequestUri.IsDefaultPort ? null : (int?)webRequest.UriTemplateMatch.RequestUri.Port,                    
-                Path = string.Concat("/", relativeUri),
+                Port = webRequest.UriTemplateMatch.RequestUri.IsDefaultPort ? null : (int?)webRequest.UriTemplateMatch.RequestUri.Port,
+                Path = HttpUtility.UrlDecode(string.Concat("/", relativeUri)),
                 Query = webRequest.UriTemplateMatch.RequestUri.Query
             };
 

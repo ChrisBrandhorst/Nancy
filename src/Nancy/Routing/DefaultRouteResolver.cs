@@ -45,8 +45,8 @@
         /// <returns>Tuple - Item1 being the Route, Item2 being the parameters dictionary, Item3 being the prereq, Item4 being the postreq, Item5 being the error handler</returns>
         public ResolveResult Resolve(NancyContext context)
         {
-            var pathDecoded = 
-                HttpUtility.UrlDecode(context.Request.Path);
+            // We assume a decoded path here, since decoding is the responsibility of the Host
+            var pathDecoded = context.Request.Path;
 
             var results = this.trie.GetMatches(GetMethod(context), pathDecoded, context);
 
